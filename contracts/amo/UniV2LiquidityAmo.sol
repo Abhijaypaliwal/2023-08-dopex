@@ -327,8 +327,7 @@ contract UniV2LiquidityAMO is AccessControl {
     // approve the AMM Router
     IERC20WithBurn(token1).safeApprove(addresses.ammRouter, token1Amount);
 
-    address[] memory path;
-    path = new address[](2);
+    address[] memory path =  new address[](2);
     path[0] = token1;
     path[1] = token2;
 

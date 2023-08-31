@@ -90,7 +90,7 @@ contract RdpxV2Core is
   /// @notice ETH Ratio required when bonding
   uint256 public constant ETH_RATIO_PERCENTAGE = 75 * DEFAULT_PRECISION;
 
-  /// @notice The % of rdpx to burn while bonding
+  /// @notice The % of rdpx to burn while bonAddressesding
   uint256 public rdpxBurnPercentage = 50 * DEFAULT_PRECISION;
 
   /// @notice The % of rdpx sent to fee distributor while bonding
@@ -164,7 +164,8 @@ contract RdpxV2Core is
     _whenPaused();
     IERC20WithBurn token;
 
-    for (uint256 i = 0; i < tokens.length; i++) {
+    // for (uint256 i = 0; i < tokens.length; i++) {
+    for (uint256 i = 0; i < tokens.length; ++i) {
       token = IERC20WithBurn(tokens[i]);
       token.safeTransfer(msg.sender, token.balanceOf(address(this)));
     }
@@ -239,11 +240,11 @@ contract RdpxV2Core is
    **/
   function addAssetTotokenReserves(
     address _asset,
-    string memory _assetSymbol
+    string calldata _assetSymbol
   ) external onlyRole(DEFAULT_ADMIN_ROLE) {
     require(_asset != address(0), "RdpxV2Core: asset cannot be 0 address");
 
-    for (uint256 i = 1; i < reserveAsset.length; i++) {
+    for (uint256 i = 1; i < reserveAsset.length; ++i) {
       require(
         reserveAsset[i].tokenAddress != _asset,
         "RdpxV2Core: asset already exists"
@@ -729,7 +730,7 @@ contract RdpxV2Core is
 
     // update user amounts
     // ETH token amount remaining after LP for the user
-    uint256 bondAmountForUser = amount1;
+   // uint256 bondAmountForUser = amount1;
 
     // Mint bond token for delegate
     // ETH token amount remaining after LP for the delegate
@@ -737,7 +738,7 @@ contract RdpxV2Core is
 
     returnValues = BondWithDelegateReturnValue(
       delegateReceiptTokenAmount,
-      bondAmountForUser,
+      amount1,
       rdpxRequired,
       wethRequired
     );
@@ -818,8 +819,8 @@ contract RdpxV2Core is
    **/
   function bondWithDelegate(
     address _to,
-    uint256[] memory _amounts,
-    uint256[] memory _delegateIds,
+    uint256[] calldata _amounts,
+    uint256[] calldata _delegateIds,
     uint256 rdpxBondId
   ) public returns (uint256 receiptTokenAmount, uint256[] memory) {
     _whenNotPaused();
@@ -833,8 +834,9 @@ contract RdpxV2Core is
       _amounts.length
     );
 
-    for (uint256 i = 0; i < _amounts.length; i++) {
+    for (uint256 i = 0; i < _amounts.length; ++i) {
       // Validate amount
+     // uint amount = _amounts[i];
       _validate(_amounts[i] > 0, 4);
 
       BondWithDelegateReturnValue

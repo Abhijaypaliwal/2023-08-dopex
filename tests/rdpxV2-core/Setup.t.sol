@@ -30,7 +30,7 @@ import { DpxEthToken } from "contracts/dpxETH/DpxEthToken.sol";
 
 // Peripheral contracts
 import { RdpxDecayingBonds } from "contracts/decaying-bonds/RdpxDecayingBonds.sol";
-import { ReLPContract } from "contracts/relp/ReLPContract.sol";
+import { ReLPContract } from "contracts/reLP/ReLPContract.sol";
 
 // Interfaces
 import { ICurveFactory } from "contracts/interfaces/ICurveFactory.sol";

@@ -75,7 +75,7 @@ contract Admin is ERC721Holder, Setup {
 
     vm.deal(address(vault), 1 ether);
     assertEq(address(vault).balance, 1 ether);
-
+    
     vault.pause();
     vault.emergencyWithdraw(tokens);
 

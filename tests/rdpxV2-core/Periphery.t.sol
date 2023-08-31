@@ -7,8 +7,8 @@ import { ERC721Holder } from "@openzeppelin/contracts/token/ERC721/utils/ERC721H
 import { Setup } from "./Setup.t.sol";
 
 // Contracts
-import { UniV2LiquidityAMO } from "contracts/amo/UniV2LiquidityAMO.sol";
-import { UniV3LiquidityAMO } from "contracts/amo/UniV3LiquidityAMO.sol";
+import { UniV2LiquidityAMO } from "contracts/amo/UniV2LiquidityAmo.sol";
+import { UniV3LiquidityAMO } from "contracts/amo/UniV3LiquidityAmo.sol";
 
 // Interfaces
 import { IUniswapV3Factory } from "contracts/uniswap_V3/IUniswapV3Factory.sol";

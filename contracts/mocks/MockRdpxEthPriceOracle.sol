@@ -2,7 +2,7 @@
 pragma solidity 0.8.19;
 
 // Interfaces
-import { IUniswapV2Pair } from "../uniswap_v2/IUniswapV2Pair.sol";
+  import { IUniswapV2Pair } from "../uniswap_V2/IUniswapV2Pair.sol";
 
 // Libraries
 import { UniswapV2Library } from "../uniswap_V2/libraries/UniswapV2Library.sol";
