@@ -123,3 +123,4 @@ chmod +x coverage.sh
 
 Slither's output can be found at [./slither.txt](https://github.com/code-423n4/2023-08-dopex/blob/main/slither.txt). 
 You can run it on your own with `slither .`
+# dopex_challenge
