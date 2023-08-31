@@ -169,6 +169,8 @@ contract Unit is ERC721Holder, Setup {
     uint256[] memory _delegateIds = new uint256[](1);
     _delegateIds[0] = 0;
     _amounts[0] = 1 * 1e18;
+    
+
 
     // address 1 bonds
     /// check user balance

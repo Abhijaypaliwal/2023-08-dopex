@@ -82,13 +82,13 @@ contract RdpxV2Core is
   mapping(uint256 => bool) public fundingPaidFor;
 
   /// @notice Precision used for prices, percentages and other calculations
-  uint256 public constant DEFAULT_PRECISION = 1e8;
+  uint256 public  DEFAULT_PRECISION = 1e8;
 
   /// @notice rDPX Ratio required when bonding
-  uint256 public constant RDPX_RATIO_PERCENTAGE = 25 * DEFAULT_PRECISION;
+  uint256 public  RDPX_RATIO_PERCENTAGE = 25 * DEFAULT_PRECISION;
 
   /// @notice ETH Ratio required when bonding
-  uint256 public constant ETH_RATIO_PERCENTAGE = 75 * DEFAULT_PRECISION;
+  uint256 public  ETH_RATIO_PERCENTAGE = 75 * DEFAULT_PRECISION;
 
   /// @notice The % of rdpx to burn while bonAddressesding
   uint256 public rdpxBurnPercentage = 50 * DEFAULT_PRECISION;
@@ -1168,11 +1168,16 @@ contract RdpxV2Core is
 
       _validate(bondDiscount < 100e8, 14);
 
-      rdpxRequired =
-        ((RDPX_RATIO_PERCENTAGE - (bondDiscount / 2)) *
-          _amount *
-          DEFAULT_PRECISION) /
-        (DEFAULT_PRECISION * rdpxPrice * 1e2);
+     rdpxRequired =((RDPX_RATIO_PERCENTAGE - (bondDiscount / 2)) * _amount * DEFAULT_PRECISION) /(DEFAULT_PRECISION * rdpxPrice * 1e2);
+      // assembly {
+      //   rdpxRequired:= div(mul(sub(sload(RDPX_RATIO_PERCENTAGE.slot), div(bondDiscount,2)), 
+      //   mul(_amount, sload(DEFAULT_PRECISION.slot))),mul(sload(DEFAULT_PRECISION.slot),mul(rdpxPrice,100)))
+      //   // ethAmount := add(ethAmount, div(mul(strike, amount), 100000000))
+      //   //         rdpxAmount := add(rdpxAmount, amount)
+      //   //         let activeOptionsslot := sload(totalActiveOptions.slot)
+      //   //         activeOptionsslot := sub(activeOptionsslot, amount)
+      //   //         sstore(totalActiveOptions.slot, activeOptionsslot)
+      // }
 
       wethRequired =
         ((ETH_RATIO_PERCENTAGE - (bondDiscount / 2)) * _amount) /
